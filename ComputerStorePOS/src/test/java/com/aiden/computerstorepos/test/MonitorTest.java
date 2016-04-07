@@ -8,6 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Monitor;
+import com.aiden.computerstorepos.factories.Impl.MonitorFactoriesImpl;
 import com.aiden.computerstorepos.factories.MonitorFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,16 +25,40 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class MonitorTest {
-    privatMonitorFactoriesce service;
+       private MonitorFactories factory;
     public MonitorTest() {
     }
 
     @Test
-    public void testMonitor() throws Exception {
-        Monitor data = service.getMonitor();
-        Assert.assertEquals(data.getProductNumber(),"23MP55HQ-P");
+    public void testMonitorCreation() throws Exception {
+        Monitor monitor = factory.createMonitor("23MP55HQ-P",50,"LG 23MP55HQ-P Widescreen LCD",6117.95);
+        Assert.assertEquals(monitor.getDescription(),"LG 23MP55HQ-P Widescreen LCD");
+        Assert.assertEquals(monitor.getProductNumber(),"23MP55HQ-P");
+        Assert.assertNotNull(monitor.getId());
     }
 
+    @Test
+    public void testMonitorUpdate() throws Exception {
+        Monitor monitor = factory.createMonitor("23MP55HQ-P",50,"LG 23MP55HQ-P Widescreen LCD",6117.95);
+        Assert.assertEquals(monitor.getDescription(),"LG 23MP55HQ-P Widescreen LCD");
+        Assert.assertEquals(monitor.getProductNumber(),"23MP55HQ-P");
+        Assert.assertNotNull(monitor.getId());
+
+        // Updated Description
+
+        Monitor updateMonitor = new Monitor.Builder()
+                .Monitor(monitor)
+                .price(7200.00)
+                .build();
+
+        Assert.assertEquals(updateMonitor.getPrice(),7200.00);
+        Assert.assertEquals(monitor.getProductNumber(),updateMonitor.getProductNumber());
+        Assert.assertEquals(monitor.getId(),updateMonitor.getId());
+
+
+
+
+    }
     @BeforeClass
     public static void setUpClass() throws Exception {
     }
@@ -44,8 +69,7 @@ public class MonitorTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        serviceMonitorFactoriesvice)ctx.getBean("Monitor");
+        factory = MonitorFactoriesImpl.getInstance();
     }
 
     @AfterMethod

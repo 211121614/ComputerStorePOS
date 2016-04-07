@@ -8,6 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.SalesComponents;
+import com.aiden.computerstorepos.factories.Impl.SalesComponentsFactoriesImpl;
 import com.aiden.computerstorepos.factories.SalesComponentsFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,14 +25,40 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class SalesComponentsTest {
-    privatSalesComponentsFactoriesce service;
+       private SalesComponentsFactories factory;
     public SalesComponentsTest() {
     }
 
     @Test
-    public void testSalesComponents() throws Exception {
-        SalesComponents data = service.getSalesComponents();
-        Assert.assertEquals(data.getProductNumber(),"1234");
+    public void testSalesComponentsCreation() throws Exception {
+        SalesComponents salesComponents = factory.createSalesComponents("1234","1234",2);
+        Assert.assertEquals(salesComponents.getProductNumber(),"1234");
+        Assert.assertEquals(salesComponents.getSaleID(),"1234");
+        Assert.assertNotNull(salesComponents.getId());
+    }
+
+    @Test
+    public void testSalesComponentsUpdate() throws Exception {
+         SalesComponents salesComponents = factory.createSalesComponents("1234","1234",2);
+        Assert.assertEquals(salesComponents.getProductNumber(),"1234");
+        Assert.assertEquals(salesComponents.getSaleID(),"1234");
+        Assert.assertNotNull(salesComponents.getId());
+
+        // Updated Description
+
+        SalesComponents updateSalesComponents = new SalesComponents.Builder()
+                .SalesComponents(salesComponents)
+                .amount(1)
+                .build();
+
+        Assert.assertEquals(updateSalesComponents.getAmount(),1);
+        Assert.assertEquals(salesComponents.getProductNumber(),updateSalesComponents.getProductNumber());
+        Assert.assertEquals(salesComponents.getSaleID(),updateSalesComponents.getSaleID());
+        Assert.assertEquals(salesComponents.getId(),updateSalesComponents.getId());
+
+
+
+
     }
 
     @BeforeClass
@@ -44,8 +71,7 @@ public class SalesComponentsTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-                 ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        serviceSalesComponentsFactoriesvice)ctx.getBean("SalesComponents");
+        factory = SalesComponentsFactoriesImpl.getInstance();
     }
 
     @AfterMethod

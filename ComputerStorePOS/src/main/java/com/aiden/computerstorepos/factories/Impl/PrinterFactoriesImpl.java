@@ -26,6 +26,7 @@ public class PrinterFactoriesImpl implements PrinterFactories{
         return factory;
     }
 
+    @Override
     public Printer createPrinter(String productNumber,int stock, String description,double price) {
         Printer  cpu = new Printer
                 .Builder()

@@ -29,7 +29,8 @@ public class SalesFactoriesImpl implements SalesFactories{
         return factory;
     }
 
-    public Sales createSales(String salesId,int empID, String date,double totalSales) {
+    @Override
+    public Sales createSales(String salesId,int empID, String date,double totalSales, double dicount) {
         Sales  sales = new Sales
                 .Builder()
                 .id(UUID.randomUUID().toString())
@@ -37,6 +38,7 @@ public class SalesFactoriesImpl implements SalesFactories{
                 .empID(empID)
                 .date(date)
                 .totalSales(totalSales)
+                .discount(dicount)
                 .build();
         return sales;
     }

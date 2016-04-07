@@ -27,6 +27,7 @@ public class SalesComponentsFactoriesImpl implements SalesComponentsFactories{
         return factory;
     }
 
+    @Override
     public SalesComponents createSalesComponents(String productNumber, String saleID,int amount) {
         SalesComponents  salesComponents = new SalesComponents
                 .Builder()

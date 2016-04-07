@@ -28,6 +28,7 @@ public class MemoryFactoriesImpl implements MemoryFactories{
         return factory;
     }
 
+    @Override
     public Memory createMemory(String productNumber,int stock, String description,double price) {
         Memory  cpu = new Memory
                 .Builder()

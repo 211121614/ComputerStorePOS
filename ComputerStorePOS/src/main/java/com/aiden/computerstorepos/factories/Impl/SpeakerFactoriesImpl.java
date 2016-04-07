@@ -25,7 +25,8 @@ public class SpeakerFactoriesImpl implements SpeakerFactories{
             factory = new SpeakerFactoriesImpl();
         return factory;
     }
-
+    
+    @Override
     public Speaker createSpeaker(String productNumber,int stock, String description,double price) {
         Speaker  cpu = new Speaker
                 .Builder()

@@ -8,6 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.StorageDevice;
+import com.aiden.computerstorepos.factories.Impl.StorageDeviceFactoriesImpl;
 import com.aiden.computerstorepos.factories.StorageDeviceFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,16 +25,40 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class StorageDeviceTest {
-    privatStorageDeviceFactoriesce service;
+        private StorageDeviceFactories factory;
     public StorageDeviceTest() {
     }
 
     @Test
-    public void testElectricity() throws Exception {
-        StorageDevice data = service.getStorageDevice();
-        Assert.assertEquals(data.getProductNumber(),"WD4003FZEX");
+    public void testStorageDeviceCreation() throws Exception {
+        StorageDevice storageDevice = factory.createStorageDevice("WD4003FZEX",50,"Western Digital 4TB WD4003FZEX",3699.00);
+        Assert.assertEquals(storageDevice.getDescription(),"Western Digital 4TB WD4003FZEX");
+        Assert.assertEquals(storageDevice.getProductNumber(),"WD4003FZEX");
+        Assert.assertNotNull(storageDevice.getId());
     }
 
+    @Test
+    public void testStorageDeviceUpdate() throws Exception {
+        StorageDevice storageDevice = factory.createStorageDevice("WD4003FZEX",50,"Western Digital 4TB WD4003FZEX",3699.00);
+        Assert.assertEquals(storageDevice.getDescription(),"Western Digital 4TB WD4003FZEX");
+        Assert.assertEquals(storageDevice.getProductNumber(),"WD4003FZEX");
+        Assert.assertNotNull(storageDevice.getId());
+
+        // Updated Description
+
+        StorageDevice updateStorageDevice = new StorageDevice.Builder()
+                .StorageDevice(storageDevice)
+                .price(3999.00)
+                .build();
+
+        Assert.assertEquals(updateStorageDevice.getPrice(),3999.00);
+        Assert.assertEquals(storageDevice.getProductNumber(),updateStorageDevice.getProductNumber());
+        Assert.assertEquals(storageDevice.getId(),updateStorageDevice.getId());
+
+
+
+
+    }
     @BeforeClass
     public static void setUpClass() throws Exception {
     }
@@ -44,8 +69,7 @@ public class StorageDeviceTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-                 ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        serviceStorageDeviceFactoriesvice)ctx.getBean("StorageDevice");
+        factory = StorageDeviceFactoriesImpl.getInstance();
     }
 
     @AfterMethod

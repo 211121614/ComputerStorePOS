@@ -27,6 +27,7 @@ public class CPUFactoriesImpl implements CPUFactories{
         return factory;
     }
 
+    @Override
     public CPU createCPU(String productNumber,int stock, String description,double price) {
         CPU  cpu = new CPU
                 .Builder()

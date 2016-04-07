@@ -8,6 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Memory;
+import com.aiden.computerstorepos.factories.Impl.MemoryFactoriesImpl;
 import com.aiden.computerstorepos.factories.MemoryFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,14 +25,39 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class MemoryTest {
-    privatMemoryFactoriesce service;
+        private MemoryFactories factory;
     public MemoryTest() {
     }
 
-  @Test
-    public void testMemory() throws Exception {
-        Memory data = service.getMemory();
-        Assert.assertEquals(data.getProductNumber(),"HX318C10FWK2/8");
+    @Test
+    public void testMemoryCreation() throws Exception {
+        Memory memory = factory.createMemory("HX318C10FWK2/8",50,"HyperX FURY DDR3 8GB",1175.95);
+        Assert.assertEquals(memory.getDescription(),"HyperX FURY DDR3 8GB");
+        Assert.assertEquals(memory.getProductNumber(),"HX318C10FWK2/8");
+        Assert.assertNotNull(memory.getId());
+    }
+
+    @Test
+    public void testMemoryUpdate() throws Exception {
+        Memory memory = factory.createMemory("HX318C10FWK2/8",50,"HyperX FURY DDR3 8GB",1175.95);
+        Assert.assertEquals(memory.getDescription(),"HyperX FURY DDR3 8GB");
+        Assert.assertEquals(memory.getProductNumber(),"HX318C10FWK2/8");
+        Assert.assertNotNull(memory.getId());
+
+        // Updated Description
+
+        Memory updateMemory = new Memory.Builder()
+                .Memory(memory)
+                .price(1299.00)
+                .build();
+
+        Assert.assertEquals(updateMemory.getPrice(),1299.00);
+        Assert.assertEquals(memory.getProductNumber(),updateMemory.getProductNumber());
+        Assert.assertEquals(memory.getId(),updateMemory.getId());
+
+
+
+
     }
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -43,8 +69,7 @@ public class MemoryTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        serviceMemoryFactoriesvice)ctx.getBean("Memory");
+        factory = MemoryFactoriesImpl.getInstance();
     }
 
     @AfterMethod

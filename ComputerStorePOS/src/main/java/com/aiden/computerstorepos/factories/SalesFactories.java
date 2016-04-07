@@ -14,5 +14,5 @@ import com.aiden.computerstorepos.domain.Sales;
  */
 public interface SalesFactories {
     
-    Sales createSales(String productNumber,int stock, String description,double price);
+    Sales createSales(String productNumber,int stock, String description,double price, double discount);
 }

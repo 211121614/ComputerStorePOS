@@ -20,6 +20,7 @@ public class Sales implements Serializable {
     private int EmpID;
     private String Date;
     private double TotalSales;
+    private double Discount;
 
     public String getId() {
         return id;
@@ -40,6 +41,10 @@ public class Sales implements Serializable {
     public double getTotalSales() {
         return TotalSales;
     }
+    
+    public double getDiscount() {
+        return Discount;
+    }
 
     private Sales()
     {
@@ -53,6 +58,7 @@ public class Sales implements Serializable {
         this.EmpID = builder.EmpID;
         this.Date = builder.Date;
         this.TotalSales = builder.TotalSales;
+        this.Discount = builder.Discount;
     }
     
     public  static class Builder
@@ -62,6 +68,7 @@ public class Sales implements Serializable {
         private int EmpID;
         private String Date;
         private double TotalSales;
+        private double Discount;
 
         public Builder id(String id) {
             this.id = id;
@@ -87,6 +94,13 @@ public class Sales implements Serializable {
             this.TotalSales = TotalSales;
             return this;
         }
+
+        public Builder discount(double Discount) {
+            this.Discount = Discount;
+            return this;
+        }
+        
+        
         
         public Builder Sales (Sales sales)
         {
@@ -95,6 +109,7 @@ public class Sales implements Serializable {
             this.EmpID = sales.EmpID;
             this.Date = sales.Date;
             this.TotalSales = sales.TotalSales;
+            this.Discount = sales.Discount;
             return this;
         }
         

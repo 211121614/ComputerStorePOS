@@ -21,7 +21,27 @@ public class StorageDevice implements Serializable{
     private int Stock;
     private double Price;
 
-        private StorageDevice(){
+    public String getId() {
+        return id;
+    }
+
+    public String getProductNumber() {
+        return ProductNumber;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public int getStock() {
+        return Stock;
+    }
+
+    public double getPrice() {
+        return Price;
+    }
+    
+    private StorageDevice(){
         
     }
     

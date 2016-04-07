@@ -7,7 +7,9 @@
 package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
+import com.aiden.computerstorepos.domain.CPU;
 import com.aiden.computerstorepos.factories.CPUFactories;
+import com.aiden.computerstorepos.factories.Impl.CPUFactoriesImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -28,30 +30,29 @@ public class CPUTest {
 
     @Test
     public void testCPUCreation() throws Exception {
-        CPU role = factory.createCPU("i7-6820HQ", "System Administrator");
-        Assert.assertEquals(role.getDescription(),"System Administrator");
-        Assert.assertEqualsrtEquals(role.getName(),"ADMIN");
-        Assert.assertNotNull(role.getId());
+        CPU cpu = factory.createCPU("i7-6820HQ",50,"INTEL CORE I5 4690K - 3.50GHZ QUAD CORE",3899.00);
+        Assert.assertEquals(cpu.getDescription(),"INTEL CORE I5 4690K - 3.50GHZ QUAD CORE");
+        Assert.assertEquals(cpu.getProductNumber(),"i7-6820HQ");
+        Assert.assertNotNull(cpu.getId());
     }
-
 
     @Test
     public void testCPUUpdate() throws Exception {
-        CPU role = factory.createCPU("ADMIN", "System Administrator");
-        Assert.assertEquals(role.getDescription(),"System Administrator");
-        Assert.assertEquals(role.getName(),"ADMIN");
-        Assert.assertNotNull(role.getId());
+        CPU cpu = factory.createCPU("i7-6820HQ",50,"INTEL CORE I5 4690K - 3.50GHZ QUAD CORE",3899.00);
+        Assert.assertEquals(cpu.getDescription(),"INTEL CORE I5 4690K - 3.50GHZ QUAD CORE");
+        Assert.assertEquals(cpu.getProductNumber(),"i7-6820HQ");
+        Assert.assertNotNull(cpu.getId());
 
         // Updated Description
 
         CPU updateCPU = new CPU.Builder()
-                .copy(role)
-                .description("Administrator")
+                .CPU(cpu)
+                .price(4000.00)
                 .build();
 
-        Assert.assertEquals(updateCPU.getDescription(),"Administrator");
-        Assert.assertEquals(role.getName(),updateCPU.getName());
-        Assert.assertEquals(role.getId(),updateCPU.getId());
+        Assert.assertEquals(updateCPU.getPrice(),4000.00);
+        Assert.assertEquals(cpu.getProductNumber(),updateCPU.getProductNumber());
+        Assert.assertEquals(cpu.getId(),updateCPU.getId());
 
 
 
@@ -67,8 +68,7 @@ public class CPUTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (CPUFactories)ctx.getBean("CPU");
+       factory = CPUFactoriesImpl.getInstance();
     }
 
     @AfterMethod

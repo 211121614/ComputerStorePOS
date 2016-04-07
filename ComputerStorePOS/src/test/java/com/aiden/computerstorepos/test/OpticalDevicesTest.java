@@ -8,6 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.OpticalDevices;
+import com.aiden.computerstorepos.factories.Impl.OpticalDevicesFactoriesImpl;
 import com.aiden.computerstorepos.factories.OpticalDevicesFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,14 +25,39 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class OpticalDevicesTest {
-    privatOpticalDevicesFactoriesce service;
+        private OpticalDevicesFactories factory;
     public OpticalDevicesTest() {
     }
 
     @Test
-    public void testOpticalDevices() throws Exception {
-        OpticalDevices data = service.getOpticalDevices();
-        Assert.assertEquals(data.getProductNumber(),"GH24LS70");
+    public void testOpticalDevicesCreation() throws Exception {
+        OpticalDevices opticalDevices = factory.createOpticalDevices("GH24LS70",50,"Internal SATA 24x Super-Multi DVD Rewriter",199.00);
+        Assert.assertEquals(opticalDevices.getDescription(),"Internal SATA 24x Super-Multi DVD Rewriter");
+        Assert.assertEquals(opticalDevices.getProductNumber(),"GH24LS70");
+        Assert.assertNotNull(opticalDevices.getId());
+    }
+
+    @Test
+    public void testOpticalDevicesUpdate() throws Exception {
+        OpticalDevices opticalDevices = factory.createOpticalDevices("GH24LS70",50,"Internal SATA 24x Super-Multi DVD Rewriter",199.00);
+        Assert.assertEquals(opticalDevices.getDescription(),"Internal SATA 24x Super-Multi DVD Rewriter");
+        Assert.assertEquals(opticalDevices.getProductNumber(),"GH24LS70");
+        Assert.assertNotNull(opticalDevices.getId());
+
+        // Updated Description
+
+        OpticalDevices updateOpticalDevices = new OpticalDevices.Builder()
+                .OpticalDevices(opticalDevices)
+                .price(250.00)
+                .build();
+
+        Assert.assertEquals(updateOpticalDevices.getPrice(),250.00);
+        Assert.assertEquals(opticalDevices.getProductNumber(),updateOpticalDevices.getProductNumber());
+        Assert.assertEquals(opticalDevices.getId(),updateOpticalDevices.getId());
+
+
+
+
     }
 
     @BeforeClass
@@ -44,8 +70,7 @@ public class OpticalDevicesTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-                 ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        serviceOpticalDevicesFactoriesvice)ctx.getBean("OpticalDevices");
+        factory = OpticalDevicesFactoriesImpl.getInstance();
     }
 
     @AfterMethod

@@ -21,6 +21,26 @@ public class Monitor implements Serializable{
     private int Stock;
     private double Price;
 
+    public String getId() {
+        return id;
+    }
+
+    public String getProductNumber() {
+        return ProductNumber;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public int getStock() {
+        return Stock;
+    }
+
+    public double getPrice() {
+        return Price;
+    }
+
     
     
         private Monitor(){

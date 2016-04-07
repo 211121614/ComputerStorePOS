@@ -8,6 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Printer;
+import com.aiden.computerstorepos.factories.Impl.PrinterFactoriesImpl;
 import com.aiden.computerstorepos.factories.PrinterFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,15 +25,41 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class PrinterTest {
-    privatPrinterFactoriesce service;
+     private PrinterFactories factory;
     public PrinterTest() {
     }
 
     @Test
-    public void testPrinter() throws Exception {
-        Printer data = service.getPrinter();
-        Assert.assertEquals(data.getProductNumber(),"4103B003");
+    public void testPrinterCreation() throws Exception {
+        Printer printer = factory.createPrinter("4103B003",50,"Canon PIXMA iP2700",449.00);
+        Assert.assertEquals(printer.getDescription(),"Canon PIXMA iP2700");
+        Assert.assertEquals(printer.getProductNumber(),"4103B003");
+        Assert.assertNotNull(printer.getId());
     }
+
+    @Test
+    public void testPrinterUpdate() throws Exception {
+        Printer printer = factory.createPrinter("4103B003",50,"Canon PIXMA iP2700",449.00);
+        Assert.assertEquals(printer.getDescription(),"Canon PIXMA iP2700");
+        Assert.assertEquals(printer.getProductNumber(),"4103B003");
+        Assert.assertNotNull(printer.getId());
+
+        // Updated Description
+
+        Printer updatePrinter = new Printer.Builder()
+                .Printer(printer)
+                .price(500.00)
+                .build();
+
+        Assert.assertEquals(updatePrinter.getPrice(),500.00);
+        Assert.assertEquals(printer.getProductNumber(),updatePrinter.getProductNumber());
+        Assert.assertEquals(printer.getId(),updatePrinter.getId());
+
+
+
+
+    }
+
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -44,8 +71,7 @@ public class PrinterTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-                 ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        servicePrinterFactoriesvice)ctx.getBean("Printer");
+                  factory = PrinterFactoriesImpl.getInstance();
     }
 
     @AfterMethod

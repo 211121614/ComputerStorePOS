@@ -27,6 +27,7 @@ private static StorageDeviceFactoriesImpl factory = null;
         return factory;
     }
 
+    @Override
     public StorageDevice createStorageDevice(String productNumber,int stock, String description,double price) {
         StorageDevice  cpu = new StorageDevice
                 .Builder()

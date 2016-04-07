@@ -8,6 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Speaker;
+import com.aiden.computerstorepos.factories.Impl.SpeakerFactoriesImpl;
 import com.aiden.computerstorepos.factories.SpeakerFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,14 +25,39 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class SpeakerTest {
-    privatSpeakerFactoriesce service;
+        private SpeakerFactories factory;
     public SpeakerTest() {
     }
 
     @Test
-    public void testSpeaker() throws Exception {
-        Speaker data = service.getSpeaker();
-        Assert.assertEquals(data.getProductNumber(),"PN 980-000354");
+    public void testSpeakerCreation() throws Exception {
+        Speaker speaker = factory.createSpeaker("PN 980-000354",50,"LOGITECH Z323",699.00);
+        Assert.assertEquals(speaker.getDescription(),"LOGITECH Z323");
+        Assert.assertEquals(speaker.getProductNumber(),"PN 980-000354");
+        Assert.assertNotNull(speaker.getId());
+    }
+
+    @Test
+    public void testSpeakerUpdate() throws Exception {
+        Speaker speaker = factory.createSpeaker("PN 980-000354",50,"LOGITECH Z323",699.00);
+        Assert.assertEquals(speaker.getDescription(),"LOGITECH Z323");
+        Assert.assertEquals(speaker.getProductNumber(),"PN 980-000354");
+        Assert.assertNotNull(speaker.getId());
+
+        // Updated Description
+
+        Speaker updateSpeaker = new Speaker.Builder()
+                .Speaker(speaker)
+                .price(899.00)
+                .build();
+
+        Assert.assertEquals(updateSpeaker.getPrice(),899.00);
+        Assert.assertEquals(speaker.getProductNumber(),updateSpeaker.getProductNumber());
+        Assert.assertEquals(speaker.getId(),updateSpeaker.getId());
+
+
+
+
     }
 
     @BeforeClass
@@ -44,8 +70,7 @@ public class SpeakerTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-                 ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        serviceSpeakerFactoriesvice)ctx.getBean("Speaker");
+        factory = SpeakerFactoriesImpl.getInstance();
     }
 
     @AfterMethod

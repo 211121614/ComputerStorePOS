@@ -28,6 +28,7 @@ public class MonitorFactoriesImpl implements MonitorFactories{
         return factory;
     }
 
+    @Override
     public Monitor createMonitor(String productNumber,int stock, String description,double price) {
         Monitor  cpu = new Monitor
                 .Builder()
