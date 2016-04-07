@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-package com.aiden.computerstorepos.services;
+package com.aiden.computerstorepos.factories;
 
-import com.aiden.computerstorepos.domain.Sales;
+import com.aiden.computerstorepos.domain.*;
 
 /**
  *
  * @author Aidem
  */
-public interface SalesService {
+public interface ChassisFactories {
     
-    Sales getSales();
+    Chassis createChassis(String productNumber,int stock, String description,double price);
 }

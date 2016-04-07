@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 
-package com.aiden.computerstorepos.services;
+package com.aiden.computerstorepos.factories;
 
-import com.aiden.computerstorepos.domain.Monitor;
+import com.aiden.computerstorepos.domain.DisplayCard;
 import java.io.Serializable;
 
 /**
  *
  * @author Aidem
  */
-public interface MonitorService {
+public interface DisplayCardFactories {
 
-    Monitor getMonitor();
+    DisplayCard createDisplayCard(String productNumber,int stock, String description,double price);
 }

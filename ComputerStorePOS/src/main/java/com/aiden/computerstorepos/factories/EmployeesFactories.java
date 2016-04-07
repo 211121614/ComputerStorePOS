@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.aiden.computerstorepos.services;
+package com.aiden.computerstorepos.factories;
 
 import com.aiden.computerstorepos.domain.Employees;
 
@@ -12,6 +12,6 @@ import com.aiden.computerstorepos.domain.Employees;
  *
  * @author Aidem
  */
-public interface EmployeesService {
-    Employees getEmployees();
+public interface EmployeesFactories {
+    Employees createEmployees(int empID, String empName, String empSurname, String empJob);
 }

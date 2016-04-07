@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.aiden.computerstorepos.services;
+package com.aiden.computerstorepos.factories;
 
 import com.aiden.computerstorepos.domain.SalesComponents;
 
@@ -12,6 +12,6 @@ import com.aiden.computerstorepos.domain.SalesComponents;
  *
  * @author Aidem
  */
-public interface SalesComponentsService {
-    SalesComponents getSalesComponents();
+public interface SalesComponentsFactories {
+    SalesComponents createSalesComponents(String productNumber, String saleID,int amount);
 }

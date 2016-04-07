@@ -4,17 +4,15 @@
  * and open the template in the editor.
  */
 
-package com.aiden.computerstorepos.services;
+package com.aiden.computerstorepos.factories;
 
-import com.aiden.computerstorepos.domain.Memory;
-import java.io.Serializable;
+import com.aiden.computerstorepos.domain.Sales;
 
 /**
  *
  * @author Aidem
  */
-public interface MemoryService {
- 
-    Memory getMemory();
+public interface SalesFactories {
     
+    Sales createSales(String productNumber,int stock, String description,double price);
 }

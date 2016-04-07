@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Monitor;
-import com.aiden.computerstorepos.services.MonitorService;
+import com.aiden.computerstorepos.factories.MonitorFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class MonitorTest {
-    private MonitorService service;
+    privatMonitorFactoriesce service;
     public MonitorTest() {
     }
 
@@ -45,7 +45,7 @@ public class MonitorTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (MonitorService)ctx.getBean("Monitor");
+        serviceMonitorFactoriesvice)ctx.getBean("Monitor");
     }
 
     @AfterMethod

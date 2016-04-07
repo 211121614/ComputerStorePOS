@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.PCU;
-import com.aiden.computerstorepos.services.PCUService;
+import com.aiden.computerstorepos.factories.PCUFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class PCUTest {
-    private PCUService service;
+    privatPCUFactoriesce service;
     public PCUTest() {
     }
 
@@ -45,7 +45,7 @@ public class PCUTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (PCUService)ctx.getBean("PCU");
+        servicePCUFactoriesvice)ctx.getBean("PCU");
     }
 
     @AfterMethod

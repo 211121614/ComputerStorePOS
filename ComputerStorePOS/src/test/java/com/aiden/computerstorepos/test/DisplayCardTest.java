@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.DisplayCard;
-import com.aiden.computerstorepos.services.DisplayCardService;
+import com.aiden.computerstorepos.factories.DisplayCardFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class DisplayCardTest {
-    private DisplayCardService service;
+    privatDisplayCardFactoriesce service;
     public DisplayCardTest() {
     }
 
@@ -45,7 +45,7 @@ public class DisplayCardTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (DisplayCardService)ctx.getBean("DisplayCard");
+        serviceDisplayCardFactoriesvice)ctx.getBean("DisplayCard");
     }
 
     @AfterMethod

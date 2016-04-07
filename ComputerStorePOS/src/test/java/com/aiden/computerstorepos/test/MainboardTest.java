@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Mainboard;
-import com.aiden.computerstorepos.services.MainboardService;
+import com.aiden.computerstorepos.factories.MainboardFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class MainboardTest {
-    private MainboardService service;
+    privatMainboardFactoriesce service;
     public MainboardTest() {
     }
 
@@ -45,7 +45,7 @@ public class MainboardTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (MainboardService)ctx.getBean("Mainboard");
+        serviceMainboardFactoriesvice)ctx.getBean("Mainboard");
     }
 
     @AfterMethod

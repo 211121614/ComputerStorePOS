@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.StorageDevice;
-import com.aiden.computerstorepos.services.StorageDeviceService;
+import com.aiden.computerstorepos.factories.StorageDeviceFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class StorageDeviceTest {
-    private StorageDeviceService service;
+    privatStorageDeviceFactoriesce service;
     public StorageDeviceTest() {
     }
 
@@ -45,7 +45,7 @@ public class StorageDeviceTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
                  ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (StorageDeviceService)ctx.getBean("StorageDevice");
+        serviceStorageDeviceFactoriesvice)ctx.getBean("StorageDevice");
     }
 
     @AfterMethod

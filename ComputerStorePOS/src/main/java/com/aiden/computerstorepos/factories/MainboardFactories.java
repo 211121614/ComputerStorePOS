@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 
-package com.aiden.computerstorepos.services;
+package com.aiden.computerstorepos.factories;
 
-import com.aiden.computerstorepos.domain.StorageDevice;
+import com.aiden.computerstorepos.domain.Mainboard;
 import java.io.Serializable;
 
 /**
  *
  * @author Aidem
  */
-public interface StorageDeviceService {
-    
-    StorageDevice getStorageDevice();
+public interface MainboardFactories{
+ 
+    Mainboard createMainboard(String productNumber,int stock, String description,double price);
 }

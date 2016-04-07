@@ -6,114 +6,104 @@
 
 package com.aiden.computerstorepos.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aidem
  */
-public class Notebook {
+public class Notebook implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+    private String id;
     private String ProductNumber;
-    private String ProductName;
-    private String Manufacturer;
-    private String Processor;
-    private String Memory;
-    private String Storage;
-    private String Camera;
-    private String Display;
+    private String Description;
+    private int Stock;
     private double Price;
 
-    public String getProductNumber() {
-        return ProductNumber;
-    }
-
-    public void setProductNumber(String ProductNumber) {
-        this.ProductNumber = ProductNumber;
-    }
-
-    public String getProductName() {
-        return ProductName;
-    }
-
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
-    }
-
-    public String getManufacturer() {
-        return Manufacturer;
-    }
-
-    public void setManufacturer(String Manufacturer) {
-        this.Manufacturer = Manufacturer;
-    }
-
-    public String getProcessor() {
-        return Processor;
-    }
-
-    public void setProcessor(String Processor) {
-        this.Processor = Processor;
-    }
-
-    public String getMemory() {
-        return Memory;
-    }
-
-    public void setMemory(String Memory) {
-        this.Memory = Memory;
-    }
-
-    public String getStorage() {
-        return Storage;
-    }
-
-    public void setStorage(String Storage) {
-        this.Storage = Storage;
-    }
-
-    public String getCamera() {
-        return Camera;
-    }
-
-    public void setCamera(String Camera) {
-        this.Camera = Camera;
-    }
-
-    public String getDisplay() {
-        return Display;
-    }
-
-    public void setDisplay(String Display) {
-        this.Display = Display;
-    }
-
-    public double getPrice() {
-        return Price;
-    }
-
-    public void setPrice(double Price) {
-        this.Price = Price;
+    
+        private Notebook(){
+        
     }
     
+    private Notebook(Builder builder)
+    {
+        this.id = builder.id;
+        this.ProductNumber = builder.ProductNumber;
+        this.Description = builder.Description;
+        this.Stock = builder.Stock;
+        this.Price = builder.Price;
+    }
+    
+    public static class Builder {
+        private String id;
+        private String ProductNumber;
+        private String Description;
+        private int Stock;
+        private double Price;
+
+        public Builder id(String id){
+            this.id = id;
+            return this;
+        }
+        
+    
+        public Builder productNumber(String ProductNumber) {
+            this.ProductNumber = ProductNumber;
+            return this;
+        }
+
+
+
+        public Builder description(String Description) {
+            this.Description = Description;
+            return this;
+        }
+
+        public Builder stock(int Stock) {
+            this.Stock = Stock;
+            return this;
+        }   
+        
+        
+        public Builder price(double Price) {
+            this.Price = Price;
+            return this;
+        }
+        
+        public Builder Notebook (Notebook chassis)
+        {
+            this.id = chassis.id;
+            this.ProductNumber = chassis.ProductNumber;
+            this.Description = chassis.Description;
+            this.Stock = chassis.Stock;
+            this.Price = chassis.Price;
+            return this;
+        }
+        
+        public Notebook build() {
+            return new Notebook(this);
+        }
+        
+            
+    }
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Notebook data = (Notebook) o;
-
-        return ProductNumber == data.ProductNumber;
-
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
-//    @Override
-//    public int hashCode() {
-//        return ProcessorNumber;
-//    }
-
     @Override
-    public String toString() {
-        return "Notebook{" +
-                "Product Number=" + ProductNumber +
-                '}';
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Notebook)) {
+            return false;
+        }
+        Notebook other = (Notebook) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 }

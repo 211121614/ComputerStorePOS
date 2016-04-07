@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.OpticalDevices;
-import com.aiden.computerstorepos.services.OpticalDevicesService;
+import com.aiden.computerstorepos.factories.OpticalDevicesFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class OpticalDevicesTest {
-    private OpticalDevicesService service;
+    privatOpticalDevicesFactoriesce service;
     public OpticalDevicesTest() {
     }
 
@@ -45,7 +45,7 @@ public class OpticalDevicesTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
                  ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (OpticalDevicesService)ctx.getBean("OpticalDevices");
+        serviceOpticalDevicesFactoriesvice)ctx.getBean("OpticalDevices");
     }
 
     @AfterMethod

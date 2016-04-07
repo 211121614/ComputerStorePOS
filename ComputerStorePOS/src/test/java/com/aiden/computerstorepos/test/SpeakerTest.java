@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Speaker;
-import com.aiden.computerstorepos.services.SpeakerService;
+import com.aiden.computerstorepos.factories.SpeakerFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class SpeakerTest {
-    private SpeakerService service;
+    privatSpeakerFactoriesce service;
     public SpeakerTest() {
     }
 
@@ -45,7 +45,7 @@ public class SpeakerTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
                  ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (SpeakerService)ctx.getBean("Speaker");
+        serviceSpeakerFactoriesvice)ctx.getBean("Speaker");
     }
 
     @AfterMethod

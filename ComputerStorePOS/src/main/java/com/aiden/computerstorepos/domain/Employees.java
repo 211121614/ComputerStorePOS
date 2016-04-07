@@ -6,69 +6,122 @@
 
 package com.aiden.computerstorepos.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aidem
  */
-public class Employees {
+public class Employees implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+    private String id;
     private int EmpID;
     private String EmpName;
     private String EmpSurname;
     private String EmpJob;
 
-    public int getEmpID() {
-        return EmpID;
+    public String getId() {
+        return id;
     }
 
-    public void setEmpID(int EmpID) {
-        this.EmpID = EmpID;
+    public int getEmpID() {
+        return EmpID;
     }
 
     public String getEmpName() {
         return EmpName;
     }
 
-    public void setEmpName(String EmpName) {
-        this.EmpName = EmpName;
-    }
-
     public String getEmpSurname() {
         return EmpSurname;
-    }
-
-    public void setEmpSurname(String EmpSurname) {
-        this.EmpSurname = EmpSurname;
     }
 
     public String getEmpJob() {
         return EmpJob;
     }
 
-    public void setEmpJob(String EmpJob) {
-        this.EmpJob = EmpJob;
+    private Employees(){
+        
+    }
+    
+    private Employees (Builder builder)
+    {
+        this.id = builder.id;
+        this.EmpID = builder.EmpID;
+        this.EmpName = builder.EmpName;
+        this.EmpSurname = builder.EmpSurname;
+        this.EmpJob = builder.EmpJob;
+    }
+ 
+    public static class Builder
+    {
+        private String id;
+        private int EmpID;
+        private String EmpName;
+        private String EmpSurname;
+        private String EmpJob;
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder empID(int EmpID) {
+            this.EmpID = EmpID;
+            return this;
+        }
+
+        public Builder empName(String EmpName) {
+            this.EmpName = EmpName;
+            return this;
+        }
+
+        public Builder empSurname(String EmpSurname) {
+            this.EmpSurname = EmpSurname;
+            return this;
+        }
+
+        public Builder empJob(String EmpJob) {
+            this.EmpJob = EmpJob;
+            return this;
+        }
+        
+        public Builder Employees (Employees emp)
+        {
+            this.id = emp.id;
+            this.EmpID = emp.EmpID;
+            this.EmpName = emp.EmpName;
+            this.EmpSurname = emp.EmpSurname;
+            this.EmpJob = emp.EmpJob;
+            return this;
+        }
+        
+        public Employees build ()
+        {
+            return new Employees(this);
+        }
+        
+        
     }
     
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Employees data = (Employees) o;
-
-        return EmpID == data.EmpID;
-
-    }
-
-    @Override
     public int hashCode() {
-        return EmpID;
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
     @Override
-    public String toString() {
-        return "Employees{" +
-                "Employees ID=" + EmpID +
-                '}';
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Employees)) {
+            return false;
+        }
+        Employees other = (Employees) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 }

@@ -13,99 +13,97 @@ import java.io.Serializable;
  * @author Aidem
  */
 public class StorageDevice implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    private String id;
     private String ProductNumber;
-    private String ProductName;
-    private String Manufacturer;
-    private String Interface;
-    private String Rotationspeed;
-    private String Capacity;
-    private String Cache;
+    private String Description;
+    private int Stock;
     private double Price;
 
-    public String getProductNumber() {
-        return ProductNumber;
+        private StorageDevice(){
+        
     }
-
-    public void setProductNumber(String ProductNumber) {
-        this.ProductNumber = ProductNumber;
+    
+    private StorageDevice(Builder builder)
+    {
+        this.id = builder.id;
+        this.ProductNumber = builder.ProductNumber;
+        this.Description = builder.Description;
+        this.Stock = builder.Stock;
+        this.Price = builder.Price;
     }
+    
+    public static class Builder {
+        private String id;
+        private String ProductNumber;
+        private String Description;
+        private int Stock;
+        private double Price;
 
-    public String getProductName() {
-        return ProductName;
-    }
+        public Builder id(String id){
+            this.id = id;
+            return this;
+        }
+        
+    
+        public Builder productNumber(String ProductNumber) {
+            this.ProductNumber = ProductNumber;
+            return this;
+        }
 
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
-    }
 
-    public String getManufacturer() {
-        return Manufacturer;
-    }
 
-    public void setManufacturer(String Manufacturer) {
-        this.Manufacturer = Manufacturer;
-    }
+        public Builder description(String Description) {
+            this.Description = Description;
+            return this;
+        }
 
-    public String getInterface() {
-        return Interface;
-    }
-
-    public void setInterface(String Interface) {
-        this.Interface = Interface;
-    }
-
-    public String getRotationspeed() {
-        return Rotationspeed;
-    }
-
-    public void setRotationspeed(String Rotationspeed) {
-        this.Rotationspeed = Rotationspeed;
-    }
-
-    public String getCapacity() {
-        return Capacity;
-    }
-
-    public void setCapacity(String Capacity) {
-        this.Capacity = Capacity;
-    }
-
-    public double getPrice() {
-        return Price;
-    }
-
-    public void setPrice(double Price) {
-        this.Price = Price;
-    }
-
-    public String getCache() {
-        return Cache;
-    }
-
-    public void setCache(String Cache) {
-        this.Cache = Cache;
+        public Builder stock(int Stock) {
+            this.Stock = Stock;
+            return this;
+        }   
+        
+        
+        public Builder price(double Price) {
+            this.Price = Price;
+            return this;
+        }
+        
+        public Builder StorageDevice (StorageDevice chassis)
+        {
+            this.id = chassis.id;
+            this.ProductNumber = chassis.ProductNumber;
+            this.Description = chassis.Description;
+            this.Stock = chassis.Stock;
+            this.Price = chassis.Price;
+            return this;
+        }
+        
+        public StorageDevice build() {
+            return new StorageDevice(this);
+        }
+        
+            
     }
     
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StorageDevice data = (StorageDevice) o;
-
-        return ProductNumber == data.ProductNumber;
-
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
-//    @Override
-//    public int hashCode() {
-//        return ProcessorNumber;
-//    }
-
     @Override
-    public String toString() {
-        return "StorageDevice{" +
-                "Product Number=" + ProductNumber +
-                '}';
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof StorageDevice)) {
+            return false;
+        }
+        StorageDevice other = (StorageDevice) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 }

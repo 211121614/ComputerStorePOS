@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Notebook;
-import com.aiden.computerstorepos.services.NotebookService;
+import com.aiden.computerstorepos.factories.NotebookFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class NotebookTest {
-    private NotebookService service;
+    privatNotebookFactoriesce service;
     public NotebookTest() {
     }
 
@@ -44,7 +44,7 @@ public class NotebookTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (NotebookService)ctx.getBean("Notebook");
+        serviceNotebookFactoriesvice)ctx.getBean("Notebook");
     }
 
     @AfterMethod

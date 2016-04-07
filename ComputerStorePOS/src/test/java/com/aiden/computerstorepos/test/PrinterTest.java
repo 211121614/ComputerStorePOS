@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Printer;
-import com.aiden.computerstorepos.services.PrinterService;
+import com.aiden.computerstorepos.factories.PrinterFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class PrinterTest {
-    private PrinterService service;
+    privatPrinterFactoriesce service;
     public PrinterTest() {
     }
 
@@ -45,7 +45,7 @@ public class PrinterTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
                  ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (PrinterService)ctx.getBean("Printer");
+        servicePrinterFactoriesvice)ctx.getBean("Printer");
     }
 
     @AfterMethod

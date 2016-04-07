@@ -6,60 +6,111 @@
 
 package com.aiden.computerstorepos.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aidem
  */
-public class SalesComponents {
+public class SalesComponents implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+    private String id;
     private String ProductNumber;
     private String SaleID;
     private int amount;
 
-    public String getProductNumber() {
-        return ProductNumber;
+    public String getId() {
+        return id;
     }
 
-    public void setProductNumber(String ProductNumber) {
-        this.ProductNumber = ProductNumber;
+    public String getProductNumber() {
+        return ProductNumber;
     }
 
     public String getSaleID() {
         return SaleID;
     }
 
-    public void setSaleID(String SaleID) {
-        this.SaleID = SaleID;
-    }
-
     public int getAmount() {
         return amount;
     }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
+    
+    private SalesComponents()
+    {
+        
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    private SalesComponents(Builder builder)
+    {
+        
+        this.id = builder.id;
+        this.ProductNumber = builder.ProductNumber;
+        this.SaleID = builder.SaleID;
+        this.amount = builder.amount;
+    }
+    
+    public static class Builder 
+    {
+        private String id;
+        private String ProductNumber;
+        private String SaleID;
+        private int amount;
 
-        SalesComponents data = (SalesComponents) o;
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
 
-        return ProductNumber == data.ProductNumber;
+        public Builder productNumber(String ProductNumber) {
+            this.ProductNumber = ProductNumber;
+            return this;
+        }
 
+        public Builder saleID(String SaleID) {
+            this.SaleID = SaleID;
+            return this;
+        }
+
+        public Builder amount(int amount) {
+            this.amount = amount;
+            return this;
+        }
+        
+        public Builder SalesComponents(SalesComponents salesComponents)
+        {
+            this.id = salesComponents.id;
+            this.ProductNumber = salesComponents.ProductNumber;
+            this.SaleID = salesComponents.SaleID;
+            this.amount = salesComponents.amount;
+            return this;
+        }
+        
+        public SalesComponents build()
+        {
+            return new SalesComponents(this);
+        }
+        
+        
     }
 
-//    @Override
-//    public int hashCode() {
-//        return ProcessorNumber;
-//    }
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
     @Override
-    public String toString() {
-        return "Sales Components{" +
-                "Product Number=" + ProductNumber +
-                '}';
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SalesComponents)) {
+            return false;
+        }
+        SalesComponents other = (SalesComponents) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 }

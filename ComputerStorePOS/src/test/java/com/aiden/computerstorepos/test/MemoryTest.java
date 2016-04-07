@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Memory;
-import com.aiden.computerstorepos.services.MemoryService;
+import com.aiden.computerstorepos.factories.MemoryFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class MemoryTest {
-    private MemoryService service;
+    privatMemoryFactoriesce service;
     public MemoryTest() {
     }
 
@@ -44,7 +44,7 @@ public class MemoryTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (MemoryService)ctx.getBean("Memory");
+        serviceMemoryFactoriesvice)ctx.getBean("Memory");
     }
 
     @AfterMethod

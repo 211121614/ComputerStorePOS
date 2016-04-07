@@ -8,7 +8,7 @@ package com.aiden.computerstorepos.test;
 
 import com.aiden.computerstorepos.conf.AppConfig;
 import com.aiden.computerstorepos.domain.Chassis;
-import com.aiden.computerstorepos.services.ChassisService;
+import com.aiden.computerstorepos.factories.ChassisFactories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Aidem
  */
 public class ChassisTest {
-    private ChassisService service;
+    private ChassisFactories service;
     public ChassisTest() {
     }
 
@@ -48,7 +48,7 @@ public class ChassisTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
          ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        service = (ChassisService)ctx.getBean("Chassis");
+        service = (ChassisFactories)ctx.getBean("Chassis");
     }
 
     @AfterMethod

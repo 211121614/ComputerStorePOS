@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.aiden.computerstorepos.services;
+package com.aiden.computerstorepos.factories;
 
 import com.aiden.computerstorepos.domain.*;
 
@@ -12,6 +12,6 @@ import com.aiden.computerstorepos.domain.*;
  *
  * @author Aidem
  */
-public interface OpticalDevicesService {
-    OpticalDevices getOpticalDevices();
+public interface NotebookFactories {
+    Notebook createNotebook(String productNumber,int stock, String description,double price);
 }

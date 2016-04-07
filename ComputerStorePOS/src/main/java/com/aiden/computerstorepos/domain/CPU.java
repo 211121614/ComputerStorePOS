@@ -13,118 +13,116 @@ import java.io.Serializable;
  */
 public class CPU implements Serializable {
 
-    private String ProcessorNumber;
-    private String ProductName;
-    private String Manufacturer;
-    private String SmartCache;
-    private String InstructionSet;
-    private String Cores;
-    private String Threads;
-    private String ProcessorBaseFrequency;
-    private String MaxTurboFrequency;
+    private static final long serialVersionUID = 1L;
+    private String id;
+    private String ProductNumber;
+    private String Description;
+    private int Stock;
     private double Price;
-
-    public String getProcessorNumber() {
-        return ProcessorNumber;
+    
+   public String getId() {
+        return id;
+    }
+   
+     public String getProductNumber() {
+        return ProductNumber;
     }
 
-    public void setProcessorNumber(String ProcessorNumber) {
-        this.ProcessorNumber = ProcessorNumber;
+    public String getDescription() {
+        return Description;
     }
-
-    public String getProductName() {
-        return ProductName;
-    }
-
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
-    }
-
-    public String getManufacturer() {
-        return Manufacturer;
-    }
-
-    public void setManufacturer(String Manufacturer) {
-        this.Manufacturer = Manufacturer;
-    }
-
-    public String getSmartCache() {
-        return SmartCache;
-    }
-
-    public void setSmartCache(String SmartCache) {
-        this.SmartCache = SmartCache;
-    }
-
-    public String getInstructionSet() {
-        return InstructionSet;
-    }
-
-    public void setInstructionSet(String InstructionSet) {
-        this.InstructionSet = InstructionSet;
-    }
-
-    public String getCores() {
-        return Cores;
-    }
-
-    public void setCores(String Cores) {
-        this.Cores = Cores;
-    }
-
-    public String getThreads() {
-        return Threads;
-    }
-
-    public void setThreads(String Threads) {
-        this.Threads = Threads;
-    }
-
-    public String getProcessorBaseFrequency() {
-        return ProcessorBaseFrequency;
-    }
-
-    public void setProcessorBaseFrequency(String ProcessorBaseFrequency) {
-        this.ProcessorBaseFrequency = ProcessorBaseFrequency;
-    }
-
-    public String getMaxTurboFrequency() {
-        return MaxTurboFrequency;
-    }
-
-    public void setMaxTurboFrequency(String MaxTurboFrequency) {
-        this.MaxTurboFrequency = MaxTurboFrequency;
+    
+    public int getStock() {
+        return Stock;
     }
 
     public double getPrice() {
         return Price;
     }
+    
+    private CPU(){  
+    }
+    
+     private CPU(Builder builder) {
+        this.id = builder.id;
+        this.ProductNumber = builder.ProductNumber;
+        this.Description = builder.Description;
+        this.Stock = builder.Stock;
+        this.Price = builder.Price;
+    }
+ 
+    public static class Builder{
+        private String id;
+        private String ProductNumber;
+        private String Description;
+        private int Stock;
+        private double Price;
+        
+        public Builder id(String id){
+            this.id = id;
+            return this;
+        }
+        
+    
+        public Builder productNumber(String ProductNumber) {
+            this.ProductNumber = ProductNumber;
+            return this;
+        }
 
-    public void setPrice(double Price) {
-        this.Price = Price;
+
+
+        public Builder description(String Description) {
+            this.Description = Description;
+            return this;
+        }
+
+        public Builder stock(int Stock) {
+            this.Stock = Stock;
+            return this;
+        }   
+        
+        
+        public Builder price(double Price) {
+            this.Price = Price;
+            return this;
+        }
+
+        public Builder CPU(CPU cpu) {
+            this.id = cpu.id;
+            this.ProductNumber = cpu.ProductNumber;
+            this.Description = cpu.Description;
+            this.Stock = cpu.Stock;
+            this.Price = cpu.Price;
+                return this;
+            }
+
+        public CPU build() {
+            return new CPU(this);
+        }
+    }
+
+ @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof CPU)) {
+            return false;
+        }
+        CPU other = (CPU) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.ProductNumber == null && other.ProductNumber != null) || (this.ProductNumber != null && !this.ProductNumber.equals(other.ProductNumber))) {
+            return false;
+        }
+        
+        return true;
+
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        CPU data = (CPU) o;
-
-        return ProcessorNumber == data.ProcessorNumber;
-
-    }
-
-//    @Override
-//    public int hashCode() {
-//        return ProcessorNumber;
-//    }
-
-    @Override
-    public String toString() {
-        return "CPU{" +
-                "Processor Number=" + ProcessorNumber +
-                '}';
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
 }
