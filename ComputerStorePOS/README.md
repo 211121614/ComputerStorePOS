@@ -1,3 +1,3 @@
 # Computer Store POS
 
-![Domain Model](/model.png)
+![Domain Model](/ComputerStorePOS/model.png)
